@@ -1,3 +1,5 @@
+import csv
+
 """
 
 Домашнее задание №2
@@ -10,12 +12,21 @@
 
 """
 
+
+DATAS = [
+    {'name': 'Alex', 'age': 20, 'job': 'Scientist'},
+    {'name': 'Martin', 'age': 37, 'job': 'Programmer'},
+    {'name': 'William', 'age': 15, 'job': 'Schoolboy '},
+    {'name': 'Jacob', 'age': 8, 'job': 'Coolboy'}
+]
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    with open('export.csv', 'w', encoding='utf-8', newline='') as f:
+        fields = ['name', 'age', 'job']
+        writer = csv.DictWriter(f, fields, delimiter=';')
+        writer.writeheader()
+        for data in DATAS:
+            writer.writerow(data)
 
 if __name__ == "__main__":
     main()
